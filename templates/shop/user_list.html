@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        nav a {
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+{% if request.user.is_authenticated%}
+{% include 'shop/navbar_is_login.html' %}
+{% else %}
+{% include 'shop/navbar_is_not_login.html' %}
+{% endif %}
+
+<br>
+<br>
+<br>
+<main class="container">
+    {% for order in orders %}
+    <div class="card mb-3 container">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ order.product.imageURL}}" class="d-block m-auto p-3 rounded-start" height="300px"
+                     alt="...">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h3>Ordering Product name: {{order.product.name}}</h3>
+                    <p class="card-text">{{order.product.description}}</p>
+                    <br>
+                    <br>
+                    <br>
+                    <p class="card-text">
+
+                        <small class="text-body-secondary">Created at: {{order.created_at}}</small>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <span class="d-block d-flex justify-content-center align-items-center">
+                    <span></span>
+                    <a class="d-block btn btn-lg btn-primary" href="{% url 'order_detail' order.id %}"
+                       role="button">Check status</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</main>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">User Data Table</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-primary">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Is Staff</th>
+            <th>Is Active</th>
+            <th>Created At</th>
+            <th>Modified At</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.is_staff }}</td>
+            <td>{{ user.is_active }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>{{ user.modeified }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!--Footer-->
+<footer class="page-footer text-center font-small mt-4 wow fadeIn" style="background-color: #0b51c5">
+
+    <!--Call to action-->
+    <div class="pt-4">
+
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+        <a href="">
+            <i class="fab fa-facebook-f mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-twitter mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-youtube mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-google-plus-g mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-dribbble mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-pinterest mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-github mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-codepen mr-3"></i>
+        </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<!-- Initializations -->
+<script type="{% static 'text/javascript' %}">
+    // Animations initialization
+    new WOW().init();
+
+</script>
+</body>
+
+</html>

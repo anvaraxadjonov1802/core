@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        nav a {
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+{% if request.user.is_authenticated%}
+{% include 'shop/navbar_is_login.html' %}
+{% else %}
+{% include 'shop/navbar_is_not_login.html' %}
+{% endif %}
+
+<br>
+<br>
+<br>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Update Product</h2>
+    <form method="POST" enctype="multipart/form-data" class="border p-4 rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="image" class="form-label">Product Image</label>
+            <input type="file" name="image" id="image" class="form-control">
+            {% if form.image.value %}
+            <img src="{{ form.image.value.url }}" alt="Current Image" class="img-thumbnail mt-2"
+                 style="width: 150px; height: 150px;">
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ form.name.value }}">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control"
+                      rows="4">{{ form.description.value }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" name="price" id="price" class="form-control" value="{{ form.price.value }}"
+                   step="0.01">
+        </div>
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" name="stock" id="stock" class="form-control" value="{{ form.stock.value }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{% url 'product_list' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+<!--Footer-->
+<footer class="page-footer text-center font-small mt-4 wow fadeIn" style="background-color: #0b51c5">
+
+    <!--Call to action-->
+    <div class="pt-4">
+
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+        <a href="">
+            <i class="fab fa-facebook-f mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-twitter mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-youtube mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-google-plus-g mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-dribbble mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-pinterest mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-github mr-3"></i>
+        </a>
+
+        <a href="">
+            <i class="fab fa-codepen mr-3"></i>
+        </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<!-- Initializations -->
+<script type="{% static 'text/javascript' %}">
+    // Animations initialization
+    new WOW().init();
+
+</script>
+</body>
+
+</html>
