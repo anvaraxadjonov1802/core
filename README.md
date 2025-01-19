@@ -30,6 +30,11 @@ Ushbu loyiha quyidagi texnologiyalar yordamida yaratilgan:
 - **Django** 
 
 ---
+## **Demo varinat**
+[E-Commerce](https://anvareshop.pythonanywhere.com/)
+
+---
+
 
 ## **O‘rnatish bo‘yicha yo‘riqnoma**  
 
