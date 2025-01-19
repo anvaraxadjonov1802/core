@@ -24,8 +24,10 @@ Loyihaning asosiy ko‘rinishlari:
 ## **Texnologiyalar**  
 Ushbu loyiha quyidagi texnologiyalar yordamida yaratilgan:  
 - **HTML5**, **CSS3**, **Bootstrap 4/5**  
-- **JavaScript** (dasturiy mantiqni boshqarish uchun)  
+- **JavaScript**
 - **Font Awesome** (ikonalar uchun)  
+- **Python** 
+- **Django** 
 
 ---
 
